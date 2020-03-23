@@ -29,24 +29,15 @@ class IndexContainer extends Component {
         }
     )}
 
-      showMoreListings = () => {
-          let add = parseInt(this.state.select_amount)
-          let start = parseInt(this.state.start_index)
-          const new_start = add + start
-          this.setState({
-            all_listings: res
-          });
-    }
-
     showMoreListings = () => {
-        let add = parseInt(this.state.select_amount)
-        let start = parseInt(this.state.start_index)
-        const new_start = add + start
-        this.setState({
+      let add = parseInt(this.state.select_amount)
+      let start = parseInt(this.state.start_index)
+      const new_start = add + start
+      this.setState({
         start_index: new_start
-        })
-        console.log(this.state)
-    }
+      })
+      console.log(this.state)
+  }
 
     showLessListings = () => {
         let minus = parseInt(this.state.select_amount)
@@ -71,7 +62,6 @@ class IndexContainer extends Component {
         })
       }
 
-  
     render() {
         return ( 
             <div>
@@ -83,12 +73,12 @@ class IndexContainer extends Component {
                     <option value={options[3]}>{options[3]}</option>
                 </select>
                 <IndexList  listings={this.getSelectListings()}/>
-              {/* </Grid>
+              {/* </Grid> */}
               <Grid container direction="row" justify="center" alignItems="center">
-                <Button variant="contained" color="primary" onClick={() => this.showLessBreaches()}> ← </Button> */}
+                <Button variant="contained" color="primary" onClick={() => this.showLessListings()}> ← </Button>
                  {this.state.start_index} - {parseInt(this.state.start_index+this.state.select_amount)}    
-                {/* <Button variant="contained" color="primary" onClick={() => this.showMoreBreaches()}> → </Button>
-              </Grid> */}
+                <Button variant="contained" color="primary" onClick={() => this.showMoreListings()}> → </Button>
+              </Grid>
             </div>
             
         );
