@@ -1,4 +1,4 @@
-const API_ROOT = `http://localhost:4000/api/v1`;
+const API_ROOT = `http://localhost:3000/api/v1`;
 
 const token = () => localStorage.getItem("token");
 
@@ -10,14 +10,15 @@ const headers = () => {
   };
 };
  
-const getPaintings = () => {
-  return fetch(`${API_ROOT}/paintings/`, { headers: headers() }).then(res =>
+const getListings = () => {
+  return fetch(`${API_ROOT}/listings/`, { headers: headers() }).then(res =>
     res.json()
   );
 };
 
+// fetch to api, backend create 
 const login = data => {
-  return fetch(`${API_ROOT}/auth`, {
+  return fetch(`${API_ROOT}/login`, {
     method: "POST",
     headers: headers(),
     body: JSON.stringify(data)
@@ -39,7 +40,7 @@ export const api = {
     login,
     getCurrentUser
   },
-  paintings: {
-    getPaintings
+  listings: {
+    getListings
   }
 };

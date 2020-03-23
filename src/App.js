@@ -34,15 +34,22 @@ class App extends Component {
   
 
   render() {
+    console.log("App Component")
     return (
         <div className="App">
           {/* <NavBar currentUser={this.state.auth.user} handleLogout={this.logout}/> */}
-          <Switch>
-              <Route exact path="/"/>
-              <Route path="/index" component = {IndexContainer}/>
-              <Route path ="/login" component = {Login}/>
-              {/* <Route path="/profile" component={Profile} /> */}
-          </Switch>
+          <Router>
+            <Switch>
+                <Route exact path="/"/>
+                <Route exact path="/index"> 
+                  <IndexContainer/> 
+                </Route>
+                <Route exact path ="/login">
+                  <Login/>
+                </Route>
+                {/* <Route path="/profile" component={Profile} /> */}
+            </Switch>
+          </Router>
         </div>
     );
   }
