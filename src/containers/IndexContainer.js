@@ -72,7 +72,7 @@ class IndexContainer extends Component {
                     <option value={options[2]}>{options[2]}</option>
                     <option value={options[3]}>{options[3]}</option>
                 </select>
-                <IndexList  listings={this.getSelectListings()}/>
+                <IndexList listings={this.getSelectListings()}/>
               {/* </Grid> */}
               <Grid container direction="row" justify="center" alignItems="center">
                 <Button variant="contained" color="primary" onClick={() => this.showLessListings()}> ← </Button>
