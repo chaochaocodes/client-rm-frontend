@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 const DB_URL = "http://localhost:3000"
 
 const options = [
-    10, 20, 40, 50
+    10, 20, 30, 40, 50
   ]
 
 class IndexContainer extends Component {
@@ -64,20 +64,22 @@ class IndexContainer extends Component {
 
     render() {
         return ( 
-            <div>
-              {/* <Grid container direction="column" justify="center" alignItems="center"> */}
-                <select value={null} className="form-control" onChange={this.handleChange}>
+            <div> 
+              <h5 padding-left="20px">Browse Your Curated Collection of Listings</h5>
+              <Grid container direction="column" justify="center" alignItems="center">
+                <select justify="center" value={null} className="form-control" onChange={this.handleChange}>
                     <option value={options[0]}>{options[0]}</option>
                     <option value={options[1]}>{options[1]}</option>
                     <option value={options[2]}>{options[2]}</option>
                     <option value={options[3]}>{options[3]}</option>
+                    <option value={options[4]}>{options[4]}</option>
                 </select>
                 <IndexList listings={this.getSelectListings()}/>
-              {/* </Grid> */}
+              </Grid>
               <Grid container direction="row" justify="center" alignItems="center">
-                <Button variant="contained" color="primary" onClick={() => this.showLessListings()}> ← </Button>
-                 {this.state.start_index} - {parseInt(this.state.start_index+this.state.select_amount)}    
-                <Button variant="contained" color="primary" onClick={() => this.showMoreListings()}> → </Button>
+                <Button variant="contained" color="primary" onClick={() => this.showLessListings()}> >> </Button> &nbsp;
+                 {this.state.start_index} - {parseInt(this.state.start_index+this.state.select_amount)} &nbsp; 
+                <Button variant="contained" color="primary" onClick={() => this.showMoreListings()}> >> </Button>
               </Grid>
             </div>
             

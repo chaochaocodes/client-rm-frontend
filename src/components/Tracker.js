@@ -30,7 +30,7 @@ const Privacy = () => {
                 <Paper className={classes.paper}>
                   <Grid container wrap="nowrap" spacing={2}>
                     <Grid item xs>
-                        <Typography variant="h4">5 Steps to Home Buying</Typography><hr></hr>
+                        <Typography variant="h5">5 Steps to Home Buying</Typography><hr></hr>
                         <p>
                           <Typography variant="h6">1.	Get Pre-Approved</Typography>
                           <Box letterSpacing={1.5} m={3}>
@@ -53,7 +53,7 @@ Besides working with a professional team that you trust, it’s also important t
 Once you receive an accepted offer, the due-diligence period starts a series of timelines for final mortgage approval, appraisal, inspections and other requirements which would be stated in the terms of the contract.                          </Box>
                         </p>
                         <p>
-                          <Typography variant="h6">4.	Under Contract Process</Typography>
+                          <Typography variant="h6">4.	Under Contract</Typography>
                           <Box letterSpacing={1.5} m={3}>
                           It comes in from all angles at this point – lenders, processors, insurance agents, sellers, real estate agents and you.                          </Box>
                         </p>
@@ -62,7 +62,6 @@ Once you receive an accepted offer, the due-diligence period starts a series of 
                           <Box letterSpacing={1.5} m={3}>
                           A successful closing requires all of the team players to come together at the same time, with the same agenda, on the same date…. with numbers and figures that match. Once a transaction has closed successfully, you are the proud owner of your new home.                          </Box>
                         </p><br></br>
-                        <Typography variant="h4">Tips</Typography><hr></hr>
                     </Grid>
                   </Grid>
                 </Paper>
