@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
-import './App.css';
+import './css/App.css';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import IndexContainer from './containers/IndexContainer';
 import NavBar from './components/NavBar'
+import SignUp from './components/SignUp';
 import Login from './components/Login';
+import Logout from './components/Logout';
 import Home from './components/Home'; 
 import Profile from './components/Profile'; 
 import Tracker from './components/Tracker'; 
 import About from './components/About'; 
 import { api } from "./services/api";
-
 
 class App extends Component {
   state = {
@@ -36,8 +37,15 @@ class App extends Component {
 //   }
 // })
 
+  signup = data => {
+    console.log("Signup", data )
+    const updatedState = {...this.state.auth, 
+      user: {id: data.id, username: data.username}};
+    localStorage.setItem("token", data.jwt);
+    this.setState({auth: updatedState});
+  }
+
   login = data => {
-    console.log(data)
     const updatedState = {...this.state.auth, 
       user: {id: data.id, username: data.username}};
     localStorage.setItem("token", data.jwt);
@@ -48,7 +56,6 @@ class App extends Component {
     localStorage.removeItem("token");
     this.setState({ auth: { user: {} } })
   }
-  
 
   render() {
     console.log("App Component")
@@ -59,8 +66,9 @@ class App extends Component {
             <Switch>
                 <Route exact path="/"><Home/></Route>
                 <Route path="/index" component={IndexContainer} /> 
-                <Route path ="/login" ><Login/></Route>  
-                {/* render={props => <Login {...props} onLogin={this.login}/>} */}
+                <Route path ="/signup" render={props => <SignUp {...props} onSignup={this.signup}/>}></Route>  
+                <Route path ="/login" render={props => <Login {...props} onLogin={this.login}/>}></Route>  
+                <Route path ="/logout" render={props => <Logout {...props} onLogout={this.logout}/>}></Route>  
                 <Route path="/profile"><Profile/></Route>
                 <Route path="/tracker"><Tracker/></Route>
                 <Route path ='/about'><About/></Route>

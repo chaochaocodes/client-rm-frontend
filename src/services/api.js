@@ -16,6 +16,15 @@ const getListings = () => {
   );
 };
 
+const signup = data => {
+  console.log(data)
+  return fetch(`${API_ROOT}/users`, {
+    method: "POST",
+    headers: headers(),
+    body: JSON.stringify({user: data})
+  }).then(res => res.json());
+}
+
 // fetch to api, backend create 
 const login = data => {
   console.log(data)
@@ -26,6 +35,11 @@ const login = data => {
   }).then(res => res.json());
 };
 
+const logout = data => {
+  console.log(data)
+  
+}
+
 const getCurrentUser = () => {
   // console.log("getting current user", headers);
   return fetch(`${API_ROOT}/current_user`, {
@@ -35,6 +49,7 @@ const getCurrentUser = () => {
 
 export const api = {
   auth: {
+    signup,
     login,
     getCurrentUser
   },

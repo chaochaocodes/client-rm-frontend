@@ -51,6 +51,7 @@ const IndexCard = props => {
     } 
 
   return (
+
     <Card className={classes.root}>
       <CardMedia
         className={classes.media}
