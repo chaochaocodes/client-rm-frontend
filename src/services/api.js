@@ -18,10 +18,11 @@ const getListings = () => {
 
 // fetch to api, backend create 
 const login = data => {
-  return fetch(`${API_ROOT}/login`, {
+  console.log(data)
+  return fetch(`${API_ROOT}/auth`, {
     method: "POST",
     headers: headers(),
-    body: JSON.stringify(data)
+    body: JSON.stringify({user: data})
   }).then(res => res.json());
 };
 
@@ -29,10 +30,7 @@ const getCurrentUser = () => {
   // console.log("getting current user", headers);
   return fetch(`${API_ROOT}/current_user`, {
     headers: headers()
-  }).then(res => {
-    // console.log(res)
-    return res.json();
-  });
+  }).then(res => res.json());
 };
 
 export const api = {

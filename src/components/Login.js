@@ -21,7 +21,7 @@ class Login extends Component {
         api.auth.login(this.state).then(res=>{
             if(!res.error) {
                 this.props.onLogin(res);
-                // this.props.history.push('/')
+                this.props.history.push('/profile')
             } else {
                 this.setState({ error: true });
             }
