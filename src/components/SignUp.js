@@ -1,6 +1,9 @@
 import React, { Component } from "react";
-import Grid from '@material-ui/core/Grid';
 import { api } from '../services/api';
+import Grid from '@material-ui/core/Grid';
+import TextField from '@material-ui/core/TextField';
+import {Button} from '@material-ui/core/'
+import {Link} from 'react-router-dom'
 // import { Redirect } from 'react-router-dom';
 
 class Signup extends Component {
@@ -23,7 +26,7 @@ class Signup extends Component {
         api.auth.signup(this.state).then(res=>{
             if(!res.error) {
                 this.props.onSignup(res);
-                this.props.history.push('/profile')
+                this.props.history.push('/dashboard')
             } else {
                 this.setState({ error: true });
             }
@@ -34,20 +37,16 @@ class Signup extends Component {
         return ( 
             <Grid container justify="center" >
                 <div>
-                <form onSubmit={this.handleSubmit}>
-                    <label>Username</label>
-                    <input 
-                        type="text" placeholder="Enter Username" name="username" 
-                        onChange={this.handleChange} value={this.state.username}/>
-                    <label>Password</label>
-                    <input 
-                        type="password" placeholder="Enter Password" name="password" 
-                        onChange={this.handleChange} value={this.state.password}/>
-                    <label>Password Confirmation</label>
-                    <input 
-                        type="password" placeholder="Enter Password Confirmation" name="pwconfirm" 
-                        onChange={this.handleChange} value={this.state.pwconfirm}/>
-                    <button type="submit">Sign Up</button>
+                <h3>Create an Account</h3>
+                <form onSubmit={this.handleSubmit} noValidate autoComplete="off">
+                    <TextField id="standard-basic" label="Username" name="username"
+                        onChange={this.handleChange} value={this.state.username}/><p></p>
+                    <TextField id="standard-basic" label="Password" name="password"
+                        onChange={this.handleChange} value={this.state.password}/><p></p>
+                    <TextField id="standard-basic" label="Confirm Password" name="pwconfirm"
+                    onChange={this.handleChange} value={this.state.pwconfirm}/><p></p>
+                    <Button variant="outlined" type="submit">Sign Up</Button><p></p>
+                    <Button variant="outlined" component={Link} to="/login">Already Have an Account?</Button>
                     </form>
                 </div> 
             </Grid> 
