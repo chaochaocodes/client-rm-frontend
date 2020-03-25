@@ -41,7 +41,8 @@ function union(a, b) {
   return [...a, ...not(b, a)];
 }
 
-const Profile = props => {
+const Dashboard = props => {  
+      const {result} = props
 
       const classes = useStyles();
       const [checked, setChecked] = React.useState([]);
@@ -119,7 +120,7 @@ const Profile = props => {
                       inputProps={{ 'aria-labelledby': labelId }}
                     />
                   </ListItemIcon>
-                  <ListItemText id={labelId} primary={`List item ${value + 1}`} />
+                  <ListItemText id={labelId} primary={result} />
                 </ListItem>
               );
             })}
@@ -127,7 +128,9 @@ const Profile = props => {
           </List>
         </Card>
       );
+      
     
+
       return (
         <Grid container spacing={2} justify="center" alignItems="center" className={classes.root}>
           <Grid item>{customList('To-Do List', left)}</Grid>
@@ -160,4 +163,4 @@ const Profile = props => {
       );
     }
 
-export default Profile
+export default Dashboard

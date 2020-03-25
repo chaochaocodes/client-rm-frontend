@@ -6,16 +6,20 @@ import NavBar from './components/NavBar'
 import SignUp from './components/SignUp';
 import Login from './components/Login';
 import Logout from './components/Logout';
+import Delete from './components/Delete';
 import Home from './components/Home'; 
-import Profile from './components/Profile'; 
+import Account from './components/Account'; 
+import Dashboard from './components/Dashboard'; 
 import Tracker from './components/Tracker'; 
 import About from './components/About'; 
 import { api } from "./services/api";
+// import { Redirect } from 'react-router-dom';
 
 class App extends Component {
   state = {
     auth: {
       user: {}
+      // logged in boolean
     }
   }
 
@@ -30,7 +34,7 @@ class App extends Component {
   }
 
 //  SAMPLE REQUEST
-//   fetch('http://localhost:3000/api/v1/profile', {
+//   fetch('http://localhost:3000/api/v1/Dashboard', {
 //   method: 'GET',
 //   headers: {
 //     Authorization: `Bearer <token>`
@@ -53,25 +57,36 @@ class App extends Component {
   };
   
   logout = () => {
+    console.log("token", "logging out!")
     localStorage.removeItem("token");
     this.setState({ auth: { user: {} } })
   }
 
+  handleDelete = () => {
+    console.log( "app.js handle delete")
+    api.auth.deleteAccount();
+}
+
   render() {
-    console.log("App Component")
+    console.log("App Component rendered")
     return (
         <div className="App">
           <Router>
-          <NavBar loggedIn={this.state.loggedIn}/> {/* currentUser={this.state.auth.user} handleLogout={this.logout} */}
+          <NavBar 
+            loggedIn={this.state.loggedIn}
+            currentUser={this.state.auth.user} 
+            onLogout={this.logout}/>
             <Switch>
                 <Route exact path="/"><Home/></Route>
                 <Route path="/index" component={IndexContainer} /> 
-                <Route path ="/signup" render={props => <SignUp {...props} onSignup={this.signup}/>}></Route>  
-                <Route path ="/login" render={props => <Login {...props} onLogin={this.login}/>}></Route>  
-                <Route path ="/logout" render={props => <Logout {...props} onLogout={this.logout}/>}></Route>  
-                <Route path="/profile"><Profile/></Route>
+                <Route path="/signup" render={props => <SignUp {...props} onSignup={this.signup}/>}></Route>  
+                <Route path="/login" render={props => <Login {...props} onLogin={this.login}/>}></Route>  
+                <Route path="/logout" ><Logout/></Route>  
+                <Route path="/account" render={props => <Account {...props} onDelete={this.handleDelete}/>}></Route> 
+                <Route path="/dashboard"><Dashboard/></Route>
+                <Route path="/delete"><Delete/></Route>
                 <Route path="/tracker"><Tracker/></Route>
-                <Route path ='/about'><About/></Route>
+                <Route path='/about'><About/></Route>
             </Switch>
           </Router>
         </div>

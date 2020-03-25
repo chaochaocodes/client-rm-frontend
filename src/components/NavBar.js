@@ -1,15 +1,18 @@
 import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar'
-import Typography from '@material-ui/core/Typography'
-import {Button, IconButton} from '@material-ui/core/'
+import {Button} from '@material-ui/core/'
 import {Link} from 'react-router-dom'
 import 'typeface-roboto';
-// import { api } from "./services/api";
-// import {NavLink} from 'react-router-dom'
 
 const NavBar = (props) => {
-    return(
+  console.log(props)
+
+function handleLogout() {
+  props.onLogout();
+}
+
+  return(
         <div>
           <AppBar position="fixed" color="primary">
             <Toolbar>
@@ -19,10 +22,12 @@ const NavBar = (props) => {
               <Button color="inherit" component={Link} to="/index">Listings</Button>
               <Button color="inherit" component={Link} to="/signup">Sign Up</Button>
               <Button color="inherit" component={Link} to="/login">Login</Button>
-              <Button color="inherit" component={Link} to="/logout">Logout</Button>
+              <Button color="inherit" onClick={handleLogout} component={Link} to="/logout">Logout</Button>
+              <Button color="inherit" component={Link} to="/account">Account</Button>
               <Button color="inherit" component={Link} to="/tracker">Tracker</Button>
               <Button color="inherit" component={Link} to="/about">About</Button>
-              <Button color="inherit" component={Link} to="/profile">{props.loggedIn ? "Profile" : "Hi, User"}</Button>
+              <Button color="inherit" component={Link} to="/dashboard">Dashboard</Button>
+              {/* {props.loggedIn ? "Dashboard" : "xxx"} */}
             </Toolbar>
           </AppBar>
         </div>
