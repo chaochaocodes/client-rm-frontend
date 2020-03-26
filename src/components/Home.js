@@ -1,10 +1,10 @@
-// landing page! :  login / signup / about
 import '../css/home.css';
 import React from "react";
 import Grid from '@material-ui/core/Grid';
 import {Link} from 'react-router-dom'
 import {Button} from '@material-ui/core/'
 import { makeStyles } from '@material-ui/core/styles';
+import SearchSelect from '../components/SearchSelect'; 
 
 const useStyles = makeStyles(theme => ({
     margin: {
@@ -21,9 +21,11 @@ function Home() {
     //   <div className='Home-component'>
         <Grid container justify="center" >
             <div>
-                <Button variant="outlined" className={classes.margin} component={Link} to="/login">Login</Button>
-                <Button variant="outlined" className={classes.margin} component={Link} to="/signup">Signup</Button>
-                <Button variant="outlined" className={classes.margin} component={Link} to="/about">About</Button>
+              {/* /*search={this.search}/>*/}
+              <SearchSelect/>
+              <Button variant="outlined" className={classes.margin} component={Link} to="/login">Login</Button>
+              <Button variant="outlined" className={classes.margin} component={Link} to="/signup">Signup</Button>
+              <Button variant="outlined" className={classes.margin} component={Link} to="/index">Explore</Button>
             </div> 
         </Grid> 
     //  </div>

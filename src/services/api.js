@@ -16,13 +16,24 @@ const getListings = () => {
   );
 };
 
+const searchListings = (data) => {
+  console.log(data, "api.js search listing")
+  return fetch(`http://localhost:3000/listings/search`, { 
+    method: "POST",
+    headers: headers(),
+    body: JSON.stringify({search: {city: data.city, state: data.state}})
+  }).then(res => res.json())
+  .then(res=>console.log(res));
+};
+
 const signup = data => {
-  console.log(data)
-  return fetch(`${API_ROOT}/users`, {
+  console.log(data, "api.js hitting signup")
+  return fetch(`http://localhost:3000/api/v1/users`, { 
     method: "POST",
     headers: headers(),
     body: JSON.stringify({user: data})
-  }).then(res => res.json());
+  }).then(res => res.json())
+  // .then(res=>console.log(res));
 }
 
 // fetch to api, backend create 
@@ -37,11 +48,10 @@ const login = data => {
 
 const deleteAccount = data => {
   console.log(data, "api.js delete account")
-  getCurrentUser()
-  .then(res=> console.log(res))
-  return fetch(`${API_ROOT}/current_user`),{
-    method: "DESTROY",
-    headers: headers()}
+  // getCurrentUser()
+  // .then(res=> console.log(res))
+  return fetch(`${API_ROOT}/users/${data.id}`, { headers: headers()})
+  // .then(res=>res.json())
   // get current user id (promise), pass to backend via fetch (DESTROY)
   // clear token.
 }
@@ -61,6 +71,7 @@ export const api = {
     getCurrentUser
   },
   listings: {
-    getListings
-  }
+    getListings,
+    searchListings
+  } 
 };
