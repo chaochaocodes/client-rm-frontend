@@ -23,7 +23,8 @@ class Signup extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        api.auth.signup(this.state).then(res=>{
+        const user = {user: this.state}
+        api.auth.signup(user).then(res=>{
             if(!res.error) {
                 this.props.onSignup(res);
                 this.props.history.push('/dashboard')
@@ -44,7 +45,7 @@ class Signup extends Component {
                     <TextField id="standard-basic" label="Password" name="password"
                         onChange={this.handleChange} value={this.state.password}/><p></p>
                     <TextField id="standard-basic" label="Confirm Password" name="pwconfirm"
-                    onChange={this.handleChange} value={this.state.pwconfirm}/><p></p>
+                        onChange={this.handleChange} value={this.state.pwconfirm}/><p></p>
                     <Button variant="outlined" type="submit">Sign Up</Button><p></p>
                     <Button variant="outlined" component={Link} to="/login">Already Have an Account?</Button>
                     </form>

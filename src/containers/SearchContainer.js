@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import SearchBar from '../components/SearchBar'
-import SearchList from '../components/SearchList'
+import SearchSelect from '../components/SearchSelect'
+import IndexList from '../components/IndexList'
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 
@@ -14,12 +14,12 @@ class SearchContainer extends Component {
         start_index: 0
       }
 
-    search = (email) => {
-        fetch(DB_URL + "emails/search", {
+    search = (city) => {
+        fetch(DB_URL + "listings/search", {
           method: 'POST',
           headers: {'Content-Type':'application/json',
                     Accept: 'application/json'},
-          body: JSON.stringify({"search": email})
+          body: JSON.stringify({"listing": city})
         })
         .then(res => res.json())
         .then(data => {
@@ -28,18 +28,8 @@ class SearchContainer extends Component {
           })
         })
       }
-    
-      saveSearchResult = () => {
-        fetch(DB_URL + `users/${this.props.currUser.id}/save_search`, {
-          method: 'POST',
-          headers: {'Content-Type':'application/json',
-                    Accept: 'application/json'},
-          body: JSON.stringify(this.state.results)
-        })
-      }
 
-
-    showMoreBreaches = () => {
+    showMoreListings = () => {
         let add = parseInt(this.state.select_amount)
         let start = parseInt(this.state.start_index)
         const new_start = add + start
@@ -49,7 +39,7 @@ class SearchContainer extends Component {
         console.log(this.state)
     }
 
-    showLessBreaches = () => {
+    showLessListings = () => {
       let minus = parseInt(this.state.select_amount)
       let start = parseInt(this.state.start_index)
       const new_start = start - minus
@@ -62,25 +52,15 @@ class SearchContainer extends Component {
 
   }
 
-  getSelectBreaches = () => {
-    console.log("Get Selected Breaches", this.state.results.breaches.slice(this.state.start_index, this.state.start_index+this.state.select_amount))
-    return this.state.results.breaches.slice(this.state.start_index, this.state.start_index+this.state.select_amount);
+  getSelectListings = () => {
+    console.log("Get Selected Listings", this.state.results.listings.slice(this.state.start_index, this.state.start_index+this.state.select_amount))
+    return this.state.results.listings.slice(this.state.start_index, this.state.start_index+this.state.select_amount);
   }
 
       showResults = () => {
         return <div>
           <Grid container direction="column" justify="center" alignItems="center">
-
-                {/* {this.state.results.address} */}
-                <form onSubmit={(e) => {
-                    e.preventDefault()
-                    this.saveSearchResult()
-                  }}>
-                    <Button variant="contained" color="primary">Save Email + Breach Results </Button>
-                </form>
-                {/* <SearchList saveSearchResult={this.saveSearchResult} breaches={this.state.results.breaches}/> */}
-
-                <SearchList saveSearchResult={this.saveSearchResult} breaches={this.getSelectBreaches()}/>
+                <IndexList listings={this.getSelectListings()}/>
                 </Grid>
                 <button onClick={() => this.showLessBreaches()}> ←</button>
                  {this.state.start_index}-{parseInt(this.state.start_index+this.state.select_amount)}   
@@ -92,9 +72,7 @@ class SearchContainer extends Component {
         console.log(this.state.results)
           return(
             <div>
-                <SearchBar  search={this.search}/>
-
-
+                <SearchSelect  search={this.search}/>
                 {this.state.results === null ? null : this.showResults()}
             </div>
           )
