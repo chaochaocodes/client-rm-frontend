@@ -50,12 +50,6 @@ const Privacy = () => {
                         <li>Users can search listings by city </li>
                         <li>Users can filter by amenities    </li>
                         </p><br></br>
-                        <Typography variant="h5">Tips & Tricks</Typography><hr></hr>
-                        <p>
-                        <li>Users can view an index of all listings.</li>
-                        <li>Users can search listings by city </li>
-                        <li>Users can filter by amenities    </li>
-                        </p><br></br>
                         <Typography variant="h5">Q & A</Typography><hr></hr>
                         <p>
                           <Typography variant="h6">1.	Should I Invest in Homeownership?</Typography>
