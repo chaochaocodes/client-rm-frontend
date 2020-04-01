@@ -42,12 +42,12 @@ class Login extends Component {
             <Grid container justify="center" >
                 <div>
                 <h3>Login</h3>
-                <form onSubmit={this.handleSubmit} noValidate autoComplete="off">
+                <form onSubmit={this.handleSubmit} noValidate autoComplete="on">
                     {/* <Message error header={this.props.failedLogin? this.props.error : null}/> */}
                     {/* <label>Username</label> */}
                     <TextField id="standard-basic" label="Username" name="username"
                         onChange={this.handleChange} value={this.state.username}/><p></p>
-                    <TextField id="standard-basic" label="Password" name="password"
+                    <TextField id="standard-basic" label="Password" name="password" type="password"
                         onChange={this.handleChange} value={this.state.password}/><p></p>
                     <Button variant="outlined" type="submit">Login</Button><p></p>
                     <Button variant="outlined" component={Link} to="/signup">New User?</Button>

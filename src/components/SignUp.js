@@ -42,9 +42,9 @@ class Signup extends Component {
                 <form onSubmit={this.handleSubmit} noValidate autoComplete="off">
                     <TextField id="standard-basic" label="Username" name="username"
                         onChange={this.handleChange} value={this.state.username}/><p></p>
-                    <TextField id="standard-basic" label="Password" name="password"
+                    <TextField id="standard-basic" label="Password" name="password" type="password"
                         onChange={this.handleChange} value={this.state.password}/><p></p>
-                    <TextField id="standard-basic" label="Confirm Password" name="pwconfirm"
+                    <TextField id="standard-basic" label="Confirm Password" name="pwconfirm" type="password"
                         onChange={this.handleChange} value={this.state.pwconfirm}/><p></p>
                     <Button variant="outlined" type="submit">Sign Up</Button><p></p>
                     <Button variant="outlined" component={Link} to="/login">Already Have an Account?</Button>
