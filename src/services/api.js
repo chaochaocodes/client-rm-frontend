@@ -1,4 +1,5 @@
 const API_ROOT = `http://localhost:3000/api/v1`;
+const ROOT = `http://localhost:3000`;
 
 const token = () => localStorage.getItem("token");
 
@@ -14,11 +15,20 @@ const headers = () => {
 //   return fetch(`${API_ROOT}/listings/`, 
 //    { headers: headers() })
 //    then(res => res.json());
-// };x`
+// };
+
+const saveListing = (data) => {
+  console.log(data, "api.js saveListing")
+  return fetch(`${API_ROOT}/users/listing`, {
+    method: "POST",
+    headers: headers(),
+    body: JSON.stringify({listing: data.listing, user_id: data.user_id})
+  })
+}
 
 const searchListings = (data) => {
   console.log(data, "api.js searchListings")
-  return fetch(`http://localhost:3000/listings/search`, { 
+  return fetch(`${ROOT}/listings/search`, { 
     method: "POST",
     headers: headers(),
     body: JSON.stringify({search: {city: data.search.city, state: data.search.state}})
@@ -27,15 +37,14 @@ const searchListings = (data) => {
 
 const signup = data => {
   console.log(data, "api.js hitting signup")
-  return fetch(`http://localhost:3000/api/v1/users`, { 
+  return fetch(`${API_ROOT}/users`, { 
     method: "POST",
     headers: headers(),
     body: JSON.stringify({user: data})
   }).then(res => res.json())
-  // .then(res=>console.log(res));
 }
 
-// POST to api, create in backend
+// POST to api, Create in backend
 const login = data => {
   console.log(data)
   return fetch(`${API_ROOT}/auth`, {
@@ -71,6 +80,7 @@ export const api = {
   },
   listings: {
     // getListings,
-    searchListings
+    searchListings,
+    saveListing
   } 
 };

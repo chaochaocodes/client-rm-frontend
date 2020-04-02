@@ -4,9 +4,9 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import InputBase from '@material-ui/core/InputBase';
-import {Button} from '@material-ui/core/'
-import {Link} from 'react-router-dom'
-import { api } from "../services/api";
+// import {Button} from '@material-ui/core/'
+// import {Link} from 'react-router-dom'
+// import { api } from "../services/api";
 
 const BootstrapInput = withStyles(theme => ({
   root: {
@@ -60,23 +60,23 @@ const SearchSelect = (props) => {
   return (
     <div>
      <h3>Enter City, State to Start Exploring!</h3>
-      <form onSubmit={e=>props.handleSubmit(e)}>
+      <form onSubmit={ e => props.handleSubmit(e) }>
         <input name="city" label="city" placeholder="Enter City"/>
         <input name="state" label="state" placeholder="Enter State"/>
         <button type="submit"> Search </button>
         {/* <Button type="submit" variant="outlined" component={Link} to="/search">Search</Button> */}
       </form>
 
-      <FormControl className={classes.margin} name="city" label="city" placeholder="Enter City">
+      <FormControl className={classes.margin}  >
         <InputLabel htmlFor="demo-customized-textbox" >City</InputLabel>
-        <BootstrapInput id="demo-customized-textbox" label="Enter City"/>
+        <BootstrapInput id="demo-customized-textbox" name="city" label="city" placeholder="Enter City"/>
       </FormControl>
 
-      <FormControl className={classes.margin} name="state" label="state" placeholder="Enter State">
+      <FormControl className={classes.margin}>
         <InputLabel htmlFor="demo-customized-textbox" >State</InputLabel>
-        <BootstrapInput id="demo-customized-textbox" />
+        <BootstrapInput id="demo-customized-textbox" name="state" label="state" placeholder="Enter State"/>
       </FormControl>
-      OR
+
       <FormControl className={classes.margin}>
         <InputLabel htmlFor="demo-customized-select-native">City</InputLabel>
         <NativeSelect
