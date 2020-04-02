@@ -21,7 +21,9 @@ class IndexContainer extends Component {
         console.log("Index component mounted!")
         fetch(DB_URL + "/listings")
         .then(res => res.json())
-        .then((res) => {this.setState({ all_listings: res})}
+        .then((res) => {
+          console.log(`---index container ${res}`)
+          this.setState({ all_listings: res})}
     )}
 
     showMoreListings = () => {
@@ -56,6 +58,8 @@ class IndexContainer extends Component {
     }
 
     render() {
+      console.log("indexcontainerfires")
+      console.log(this.state.all_listings)
         return ( 
           <div>
               <Grid container direction="column" justify="center" alignItems="center">
@@ -69,7 +73,7 @@ class IndexContainer extends Component {
                     <option value={options[4]}>{options[4]}</option>
                 </select>
                 </div> 
-                <IndexList listings={this.getSelectListings()}/>
+                <IndexList listings={this.getSelectListings()} handleSave={this.props.handleSave}/>
               </Grid>
               <Grid container direction="row" justify="center" alignItems="center">
                 <Button variant="contained" color="primary" onClick={() => this.showLessListings()}> {`<<`} </Button> &nbsp;

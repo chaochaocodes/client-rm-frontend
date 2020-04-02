@@ -16,10 +16,11 @@ const IndexList = props => {
   const classes = useStyles();
 
   function renderResults(){
+    console.log(`---index list ${props.listings}`)
     return props.listings.map(result => {
       return(
         <Grid key={result.id} item>
-            <IndexCard key={result.id} result={result}/>
+            <IndexCard key={result.id} result={result} handleSave={props.handleSave}/>
         </Grid>
       )
     })}

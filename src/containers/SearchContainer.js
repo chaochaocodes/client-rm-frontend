@@ -4,9 +4,6 @@ import IndexList from '../components/IndexList'
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import { api } from "../services/api";
-import { ClickAwayListener } from '@material-ui/core';
-
-const DB_URL = "http://localhost:3000/"
 
 const options = [
   10, 20, 30, 40, 50
@@ -19,13 +16,6 @@ class SearchContainer extends Component {
         select_amount: 10,
         start_index: 0
       }
-
-    // renderSearch = () => {
-    //   api.listings.searchListings({search: city, state})
-    //   .then(res => res.json())
-    //   .then(res=>console.log(res, "fetch res"))
-    //   .then(data => {this.setState({results: data})})
-    // }
 
     handleSubmit = (e) => {
       console.log("fires")
@@ -67,31 +57,40 @@ class SearchContainer extends Component {
       this.setState({ select_amount: parseInt(e.target.value)})
     }
 
+    showResults = () => {
+      return ( 
+        <div>
+            <Grid container direction="column" justify="center" alignItems="center">
+              <div> 
+              <h3>Search Results:</h3>
+              <select justify="right" value={null} className="form-control" onChange={this.handleChange}>
+                  <option value={options[0]}>{options[0]}</option>
+                  <option value={options[1]}>{options[1]}</option>
+                  <option value={options[2]}>{options[2]}</option>
+                  <option value={options[3]}>{options[3]}</option>
+                  <option value={options[4]}>{options[4]}</option>
+              </select>
+              </div> 
+              <IndexList listings={this.getSelectListings()} handleSave={this.props.handleSave}/>
+            </Grid>
+            <Grid container direction="row" justify="center" alignItems="center">
+              <Button variant="contained" color="primary" onClick={() => this.showLessListings()}> {`<<`} </Button> &nbsp;
+               {this.state.start_index} - {parseInt(this.state.start_index+this.state.select_amount)} &nbsp; 
+              <Button variant="contained" color="primary" onClick={() => this.showMoreListings()}> >> </Button>
+            </Grid>
+        </div>
+      );
+    }
+
 render() {
   return ( 
     <div>
-        <Grid container direction="column" justify="center" alignItems="center">
-          <div> 
-          <h3>Search Results:</h3>
-          <select justify="right" value={null} className="form-control" onChange={this.handleChange}>
-              <option value={options[0]}>{options[0]}</option>
-              <option value={options[1]}>{options[1]}</option>
-              <option value={options[2]}>{options[2]}</option>
-              <option value={options[3]}>{options[3]}</option>
-              <option value={options[4]}>{options[4]}</option>
-          </select>
-          </div> 
-          <SearchSelect handleSubmit={this.handleSubmit}/>
-          <IndexList listings={this.getSelectListings()}/>
-        </Grid>
-        <Grid container direction="row" justify="center" alignItems="center">
-          <Button variant="contained" color="primary" onClick={() => this.showLessListings()}> {`<<`} </Button> &nbsp;
-           {this.state.start_index} - {parseInt(this.state.start_index+this.state.select_amount)} &nbsp; 
-          <Button variant="contained" color="primary" onClick={() => this.showMoreListings()}> >> </Button>
-        </Grid>
+      <Grid container direction="column" justify="center" alignItems="center">
+        <SearchSelect handleSubmit={this.handleSubmit}/>
+        {this.state.results.length === 0 ? null : this.showResults()}
+      </Grid>
     </div>
   );
-}
-}
+}}
 
 export default SearchContainer;
