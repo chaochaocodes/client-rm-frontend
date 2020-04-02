@@ -9,12 +9,20 @@ import Login from './components/Login';
 import Logout from './components/Logout';
 import Delete from './components/Delete';
 import Home from './components/Home'; 
-import Account from './components/Account'; 
 import Dashboard from './components/Dashboard'; 
-import Tracker from './components/Tracker'; 
 import About from './components/About'; 
 import { api } from "./services/api";
 // import { Redirect } from 'react-router-dom';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import AccountContainer from './containers/AccountContainer';
+
+const theme = createMuiTheme({
+    palette: {
+      primary: {
+        main: '#00897b',
+      },
+    },
+});
 
 class App extends Component {
   state = {
@@ -55,18 +63,25 @@ class App extends Component {
     this.setState({ loggedIn: false, auth: { user: {} } })
   }
 
-  handleDelete = () => {
+  delete = () => {
     console.log(this.state.auth.user, "Handle delete")
     console.log( "app.js handle delete")
     api.auth.deleteAccount(this.state.auth.user)
     .then(this.logout());
-    // this.logout();
 }
+
+  handleSave = (result) => {
+    console.log("save fires")
+    api.listings.saveListing({listing: result, user_id: this.state.auth.user.id}) // {user id, listing data object}
+    // .then(res => res.json())
+    // .then(res => {this.setState({listing: res})})
+  };
 
   render() {
     console.log("App Component rendered")
     return (
         <div className="App">
+          <ThemeProvider theme={theme} >
           <Router>
           <NavBar 
             loggedIn={this.state.loggedIn}
@@ -74,18 +89,18 @@ class App extends Component {
             onLogout={this.logout}/>
             <Switch>
                 <Route exact path="/"><Home/></Route>
-                <Route path="/index" component={IndexContainer} /> 
-                <Route path="/search" component={SearchContainer} /> 
+                <Route path="/index" render={props => <IndexContainer {...props} handleSave={this.handleSave}/>}></Route>
+                <Route path="/search" render={props => <SearchContainer {...props} handleSave={this.handleSave}/>}></Route>
                 <Route path="/signup" render={props => <SignUp {...props} onSignup={this.signup}/>}></Route>  
                 <Route path="/login" render={props => <Login {...props} onLogin={this.login}/>}></Route>  
                 <Route path="/logout" ><Logout/></Route>  
-                <Route path="/account" render={props => <Account {...props} onDelete={this.handleDelete} currentUser={this.state.auth.user} />}></Route> 
+                <Route path="/account" render={props => <AccountContainer {...props} onDelete={this.delete} currentUser={this.state.auth.user} />}></Route> 
                 <Route path="/dashboard"><Dashboard/></Route>
                 <Route path="/delete"><Delete/></Route>
-                <Route path="/tracker"><Tracker/></Route>
                 <Route path='/about'><About/></Route>
             </Switch>
           </Router>
+          </ThemeProvider>
         </div>
     );
   }
