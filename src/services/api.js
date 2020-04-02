@@ -9,21 +9,20 @@ const headers = () => {
     "Authorization" : token()
   };
 };
- 
-const getListings = () => {
-  return fetch(`${API_ROOT}/listings/`, { headers: headers() }).then(res =>
-    res.json()
-  );
-};
+
+// const getListings = () => {
+//   return fetch(`${API_ROOT}/listings/`, 
+//    { headers: headers() })
+//    then(res => res.json());
+// };x`
 
 const searchListings = (data) => {
-  console.log(data, "api.js search listing")
+  console.log(data, "api.js searchListings")
   return fetch(`http://localhost:3000/listings/search`, { 
     method: "POST",
     headers: headers(),
-    body: JSON.stringify({search: {city: data.city, state: data.state}})
-  }).then(res => res.json())
-  .then(res=>console.log(res));
+    body: JSON.stringify({search: {city: data.search.city, state: data.search.state}})
+  })
 };
 
 const signup = data => {
@@ -36,7 +35,7 @@ const signup = data => {
   // .then(res=>console.log(res));
 }
 
-// fetch to api, backend create 
+// POST to api, create in backend
 const login = data => {
   console.log(data)
   return fetch(`${API_ROOT}/auth`, {
@@ -71,7 +70,7 @@ export const api = {
     getCurrentUser
   },
   listings: {
-    getListings,
+    // getListings,
     searchListings
   } 
 };

@@ -22,10 +22,9 @@ function Home() {
         <Grid container justify="center" >
             <div>
               {/* /*search={this.search}/>*/}
-              <SearchSelect/>
               <Button variant="outlined" className={classes.margin} component={Link} to="/login">Login</Button>
               <Button variant="outlined" className={classes.margin} component={Link} to="/signup">Signup</Button>
-              <Button variant="outlined" className={classes.margin} component={Link} to="/index">Explore</Button>
+              <Button variant="outlined" className={classes.margin} component={Link} to="/search">Explore</Button>
             </div> 
         </Grid> 
     //  </div>

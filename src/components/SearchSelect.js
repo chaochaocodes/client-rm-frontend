@@ -5,6 +5,7 @@ import FormControl from '@material-ui/core/FormControl';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import InputBase from '@material-ui/core/InputBase';
 import {Button} from '@material-ui/core/'
+import {Link} from 'react-router-dom'
 import { api } from "../services/api";
 
 const BootstrapInput = withStyles(theme => ({
@@ -49,25 +50,21 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-function SearchSelect() {
+const SearchSelect = (props) => {
   const classes = useStyles();
-  const [age, setAge] = React.useState('');
+  // const [age, setCity] = React.useState('');
   const handleChange = event => {
-    setAge(event.target.value);
-  };
-  
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    api.listings.searchListings({search: {city: e.target.city.value, state: e.target.state.value}})
+    // setCity(event.target.value);
   };
 
   return (
     <div>
      <h3>Enter City, State to Start Exploring!</h3>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={e=>props.handleSubmit(e)}>
         <input name="city" label="city" placeholder="Enter City"/>
         <input name="state" label="state" placeholder="Enter State"/>
-        <button value="submit"> Search </button>
+        <button type="submit"> Search </button>
+        {/* <Button type="submit" variant="outlined" component={Link} to="/search">Search</Button> */}
       </form>
 
       <FormControl className={classes.margin} name="city" label="city" placeholder="Enter City">
@@ -79,12 +76,12 @@ function SearchSelect() {
         <InputLabel htmlFor="demo-customized-textbox" >State</InputLabel>
         <BootstrapInput id="demo-customized-textbox" />
       </FormControl>
-
+      OR
       <FormControl className={classes.margin}>
         <InputLabel htmlFor="demo-customized-select-native">City</InputLabel>
         <NativeSelect
           id="demo-customized-select-native"
-          // value={age}
+          // value={city}
           onChange={handleChange}
           input={<BootstrapInput />}
         >
@@ -100,4 +97,4 @@ function SearchSelect() {
   );
 }
 
-export default SearchSelect
+export default SearchSelect;
