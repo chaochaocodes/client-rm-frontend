@@ -3,80 +3,95 @@ import SearchSelect from '../components/SearchSelect'
 import IndexList from '../components/IndexList'
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
+import { api } from "../services/api";
+import { ClickAwayListener } from '@material-ui/core';
 
 const DB_URL = "http://localhost:3000/"
+
+const options = [
+  10, 20, 30, 40, 50
+]
 
 class SearchContainer extends Component {
 
     state = {
-        results: null,
+        results: [],
         select_amount: 10,
         start_index: 0
       }
 
-    search = (city) => {
-        fetch(DB_URL + "listings/search", {
-          method: 'POST',
-          headers: {'Content-Type':'application/json',
-                    Accept: 'application/json'},
-          body: JSON.stringify({"listing": city})
-        })
-        .then(res => res.json())
-        .then(data => {
-          this.setState({
-            results: data
-          })
-        })
-      }
+    // renderSearch = () => {
+    //   api.listings.searchListings({search: city, state})
+    //   .then(res => res.json())
+    //   .then(res=>console.log(res, "fetch res"))
+    //   .then(data => {this.setState({results: data})})
+    // }
 
+    handleSubmit = (e) => {
+      console.log("fires")
+      e.preventDefault();
+      api.listings.searchListings({search: {city: e.target.city.value, state: e.target.state.value}})
+      .then(res => res.json())
+      .then(res => {this.setState({results: res})})
+    };
+      
     showMoreListings = () => {
-        let add = parseInt(this.state.select_amount)
+      let add = parseInt(this.state.select_amount)
+      let start = parseInt(this.state.start_index)
+      const new_start = add + start
+      this.setState({
+        start_index: new_start
+      })
+      console.log(this.state)
+  }
+
+    showLessListings = () => {
+        let minus = parseInt(this.state.select_amount)
         let start = parseInt(this.state.start_index)
-        const new_start = add + start
-        this.setState({
-          start_index: new_start
-        })
+        const new_start = start - minus
+        if(new_start >= 0) {
+            this.setState({
+            start_index: new_start
+            })
+        }
         console.log(this.state)
     }
 
-    showLessListings = () => {
-      let minus = parseInt(this.state.select_amount)
-      let start = parseInt(this.state.start_index)
-      const new_start = start - minus
-      if(new_start >= 0) {
-          this.setState({
-          start_index: new_start
-          })
-      }
-      console.log(this.state)
+    getSelectListings = () => {
+      console.log(this.state.results)
+      return this.state.results.slice(this.state.start_index, this.state.start_index+this.state.select_amount);
+    }
 
-  }
+    handleChange = (e) => {
+      console.log("Selected num", e.target.value)
+      this.setState({ select_amount: parseInt(e.target.value)})
+    }
 
-  getSelectListings = () => {
-    console.log("Get Selected Listings", this.state.results.listings.slice(this.state.start_index, this.state.start_index+this.state.select_amount))
-    return this.state.results.listings.slice(this.state.start_index, this.state.start_index+this.state.select_amount);
-  }
-
-      showResults = () => {
-        return <div>
-          <Grid container direction="column" justify="center" alignItems="center">
-                <IndexList listings={this.getSelectListings()}/>
-                </Grid>
-                <button onClick={() => this.showLessBreaches()}> ←</button>
-                 {this.state.start_index}-{parseInt(this.state.start_index+this.state.select_amount)}   
-                <button onClick={() => this.showMoreBreaches()}> →</button>
-        </div>
-      }
-
-      render(){
-        console.log(this.state.results)
-          return(
-            <div>
-                <SearchSelect  search={this.search}/>
-                {this.state.results === null ? null : this.showResults()}
-            </div>
-          )
-      }
+render() {
+  return ( 
+    <div>
+        <Grid container direction="column" justify="center" alignItems="center">
+          <div> 
+          <h3>Search Results:</h3>
+          <select justify="right" value={null} className="form-control" onChange={this.handleChange}>
+              <option value={options[0]}>{options[0]}</option>
+              <option value={options[1]}>{options[1]}</option>
+              <option value={options[2]}>{options[2]}</option>
+              <option value={options[3]}>{options[3]}</option>
+              <option value={options[4]}>{options[4]}</option>
+          </select>
+          </div> 
+          <SearchSelect handleSubmit={this.handleSubmit}/>
+          <IndexList listings={this.getSelectListings()}/>
+        </Grid>
+        <Grid container direction="row" justify="center" alignItems="center">
+          <Button variant="contained" color="primary" onClick={() => this.showLessListings()}> {`<<`} </Button> &nbsp;
+           {this.state.start_index} - {parseInt(this.state.start_index+this.state.select_amount)} &nbsp; 
+          <Button variant="contained" color="primary" onClick={() => this.showMoreListings()}> >> </Button>
+        </Grid>
+    </div>
+  );
+}
 }
 
-export default SearchContainer
+export default SearchContainer;

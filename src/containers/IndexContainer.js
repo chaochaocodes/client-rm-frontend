@@ -19,13 +19,9 @@ class IndexContainer extends Component {
     
     componentDidMount(){
         console.log("Index component mounted!")
-        fetch(DB_URL + "/listings/twenty")
+        fetch(DB_URL + "/listings")
         .then(res => res.json())
-        .then((res) => {
-          this.setState({
-            all_listings: res
-          })
-        }
+        .then((res) => {this.setState({ all_listings: res})}
     )}
 
     showMoreListings = () => {
@@ -56,9 +52,7 @@ class IndexContainer extends Component {
 
     handleChange = (e) => {
       console.log("Selected num", e.target.value)
-      this.setState({
-          select_amount: parseInt(e.target.value)
-      })
+      this.setState({ select_amount: parseInt(e.target.value)})
     }
 
     render() {
