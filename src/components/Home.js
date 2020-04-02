@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import {Link} from 'react-router-dom'
 import {Button} from '@material-ui/core/'
 import { makeStyles } from '@material-ui/core/styles';
-import SearchSelect from '../components/SearchSelect'; 
+// import SearchSelect from '../components/SearchSelect'; 
 
 const useStyles = makeStyles(theme => ({
     margin: {
@@ -21,7 +21,6 @@ function Home() {
     //   <div className='Home-component'>
         <Grid container justify="center" >
             <div>
-              {/* /*search={this.search}/>*/}
               <Button variant="outlined" className={classes.margin} component={Link} to="/login">Login</Button>
               <Button variant="outlined" className={classes.margin} component={Link} to="/signup">Signup</Button>
               <Button variant="outlined" className={classes.margin} component={Link} to="/search">Explore</Button>
