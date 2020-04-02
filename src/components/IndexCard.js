@@ -10,6 +10,7 @@ import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import PlaceholderPhoto from '../images/national_association_of_realtors_logo.png';
 // import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 const useStyles = makeStyles(theme => ({
@@ -55,7 +56,7 @@ const IndexCard = props => {
     <Card className={classes.root}>
       <CardMedia
         className={classes.media}
-        image={result.photo}
+        image={result.photo ? result.photo : PlaceholderPhoto}
         title="Home"
       />
       <CardHeader
