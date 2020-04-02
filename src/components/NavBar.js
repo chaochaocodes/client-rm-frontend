@@ -16,7 +16,6 @@ const loggedinBtns = ()=> {
   return (
     <div>
     <Button color="inherit" component={Link} to="/account">Account</Button>
-    <Button color="inherit" component={Link} to="/tracker">Tracker</Button>
     <Button color="inherit" component={Link} to="/dashboard">Dashboard</Button>
     <Button color="inherit" onClick={handleLogout} component={Link} to="/logout">Logout</Button>
     </div>
@@ -49,20 +48,20 @@ const loggedoutBtns = () => {
 export default NavBar;
 
 // Select: Dashboard, Account, Tracker
-{/* <FormControl className={classes.margin}>
-<InputLabel id="demo-customized-select-label">Age</InputLabel>
-<Select
-  labelId="demo-customized-select-label"
-  id="demo-customized-select"
-  value={age}
-  onChange={handleChange}
-  input={<BootstrapInput />}
->
-  <MenuItem value="">
-    <em>None</em>
-  </MenuItem>
-  <MenuItem value={10}>Ten</MenuItem>
-  <MenuItem value={20}>Twenty</MenuItem>
-  <MenuItem value={30}>Thirty</MenuItem>
-</Select>
-</FormControl> */}
+// <FormControl className={classes.margin}>
+// <InputLabel id="demo-customized-select-label">Age</InputLabel>
+// <Select
+//   labelId="demo-customized-select-label"
+//   id="demo-customized-select"
+//   value={age}
+//   onChange={handleChange}
+//   input={<BootstrapInput />}
+// >
+//   <MenuItem value="">
+//     <em>None</em>
+//   </MenuItem>
+//   <MenuItem value={10}>Ten</MenuItem>
+//   <MenuItem value={20}>Twenty</MenuItem>
+//   <MenuItem value={30}>Thirty</MenuItem>
+// </Select>
+// </FormControl>
