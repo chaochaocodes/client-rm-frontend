@@ -7,22 +7,30 @@ const headers = () => {
   return {
     "Content-Type" : "application/json",
     "Accepts" : "application/json",
-    "Authorization" : token()
+    "Authorization" : token(),
   };
 };
 
 // const getListings = () => {
-//   return fetch(`${API_ROOT}/listings/`, 
+//   return fetch(`${API_ROOT}/listings`, 
 //    { headers: headers() })
 //    then(res => res.json());
 // };
 
 const saveListing = (data) => {
   console.log(data, "api.js saveListing")
-  return fetch(`${API_ROOT}/users/listing`, {
+  return fetch(`${ROOT}/users_listings/saved`, {    
     method: "POST",
     headers: headers(),
     body: JSON.stringify({listing: data.listing, user_id: data.user_id})
+  })
+}
+
+const getSavedListings = (data) => {
+  console.log(data, 'api.js getSavedListings')
+  console.log(localStorage.getItem("token"))
+  return fetch(`${API_ROOT}/users/${data}/listings`, {
+    headers: headers(),
   })
 }
 
@@ -54,14 +62,12 @@ const login = data => {
   }).then(res => res.json());
 };
 
+// getCurrentUser(), grab id (promise), fetch to backend, clear token
 const deleteAccount = data => {
   console.log(data, "api.js delete account")
-  // getCurrentUser()
-  // .then(res=> console.log(res))
-  return fetch(`${API_ROOT}/users/${data.id}`, { headers: headers()})
-  // .then(res=>res.json())
-  // get current user id (promise), pass to backend via fetch (DESTROY)
-  // clear token.
+  return fetch(`${API_ROOT}/users/${data.id}`, { 
+    method: "POST",
+    headers: headers()})
 }
 
 const getCurrentUser = () => {
@@ -81,6 +87,7 @@ export const api = {
   listings: {
     // getListings,
     searchListings,
-    saveListing
+    saveListing,
+    getSavedListings
   } 
 };
