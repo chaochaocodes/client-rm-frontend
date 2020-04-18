@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
 function Home() {
     const classes = useStyles();
     return ( 
-    //   <div className='Home-component'>
+      <div className='Home-component'>
         <Grid container justify="center" >
             <div>
               <Button variant="outlined" className={classes.margin} component={Link} to="/login">Login</Button>
@@ -26,7 +26,7 @@ function Home() {
               <Button variant="outlined" className={classes.margin} component={Link} to="/search">Explore</Button>
             </div> 
         </Grid> 
-    //  </div>
+      </div>
     )
 }
 

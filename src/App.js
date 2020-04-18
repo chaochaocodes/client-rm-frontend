@@ -3,6 +3,7 @@ import './css/App.css';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import IndexContainer from './containers/IndexContainer';
 import SearchContainer from './containers/SearchContainer';
+import SaveContainer from './containers/SaveContainer';
 import NavBar from './components/NavBar'
 import SignUp from './components/SignUp';
 import Login from './components/Login';
@@ -10,16 +11,16 @@ import Logout from './components/Logout';
 import Delete from './components/Delete';
 import Home from './components/Home'; 
 import Dashboard from './components/Dashboard'; 
+import Tracker from './components/Tracker'; 
 import About from './components/About'; 
 import { api } from "./services/api";
-// import { Redirect } from 'react-router-dom';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import AccountContainer from './containers/AccountContainer';
 
 const theme = createMuiTheme({
     palette: {
       primary: {
-        main: '#00897b',
+        main: '#455a64',
       },
     },
 });
@@ -44,17 +45,31 @@ class App extends Component {
 
   signup = data => {
     console.log("Signup", data )
-    const updatedState = {...this.state.auth, 
-      user: {id: data.id, username: data.username}};
     localStorage.setItem("token", data.jwt);
-    this.setState({loggedIn: true, auth: updatedState});
+    this.setState({
+      loggedIn: true,
+      auth: {
+        user: {
+          id: data.user.id,
+          username: data.user.username
+        }
+      }
+    })
   }
 
   login = data => {
-    const updatedState = {...this.state.auth, 
-      user: {id: data.id, username: data.username}};
+    console.log("login func")
+    console.log(data)
     localStorage.setItem("token", data.jwt);
-    this.setState({loggedIn: true, auth: updatedState});
+    this.setState({
+      loggedIn: true,
+      auth: {
+        user: {
+          id: data.user.id,
+          username: data.user.username
+        }
+      }
+    })
   };
   
   logout = () => {
@@ -68,17 +83,16 @@ class App extends Component {
     console.log( "app.js handle delete")
     api.auth.deleteAccount(this.state.auth.user)
     .then(this.logout());
-}
+  }
 
   handleSave = (result) => {
     console.log("save fires")
-    api.listings.saveListing({listing: result, user_id: this.state.auth.user.id}) // {user id, listing data object}
-    // .then(res => res.json())
-    // .then(res => {this.setState({listing: res})})
+    api.listings.saveListing({listing: result, user_id: this.state.auth.user.id})
   };
 
   render() {
     console.log("App Component rendered")
+    console.log(this.state.auth.user)
     return (
         <div className="App">
           <ThemeProvider theme={theme} >
@@ -90,11 +104,13 @@ class App extends Component {
             <Switch>
                 <Route exact path="/"><Home/></Route>
                 <Route path="/index" render={props => <IndexContainer {...props} handleSave={this.handleSave}/>}></Route>
+                <Route path="/save" ><SaveContainer currentUser={this.state.auth.user} /></Route>
                 <Route path="/search" render={props => <SearchContainer {...props} handleSave={this.handleSave}/>}></Route>
                 <Route path="/signup" render={props => <SignUp {...props} onSignup={this.signup}/>}></Route>  
                 <Route path="/login" render={props => <Login {...props} onLogin={this.login}/>}></Route>  
                 <Route path="/logout" ><Logout/></Route>  
                 <Route path="/account" render={props => <AccountContainer {...props} onDelete={this.delete} currentUser={this.state.auth.user} />}></Route> 
+                <Route path="/tracker"><Tracker/></Route>
                 <Route path="/dashboard"><Dashboard/></Route>
                 <Route path="/delete"><Delete/></Route>
                 <Route path='/about'><About/></Route>

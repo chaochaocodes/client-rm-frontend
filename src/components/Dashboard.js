@@ -1,16 +1,13 @@
 import React from 'react';
-import HorizontalStepper from './Stepper';
-import Tabs from './Tabs';
 
-function Dashboard() {
+class Dashboard extends React.Component {
 
-  return(
-      <>
-      <HorizontalStepper />
-      <br/><br/>
-      <Tabs />
-      </>
-    )
+    render(){
+        return(
+            <>
+            </>
+        )
+    }
 }
 
-export default Dashboard; 
+export default Dashboard;

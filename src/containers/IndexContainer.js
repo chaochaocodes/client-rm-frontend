@@ -23,8 +23,9 @@ class IndexContainer extends Component {
         .then(res => res.json())
         .then((res) => {
           console.log(`---index container ${res}`)
-          this.setState({ all_listings: res})}
-    )}
+          this.setState({ all_listings: res})
+        })
+    }
 
     showMoreListings = () => {
       let add = parseInt(this.state.select_amount)
@@ -73,7 +74,7 @@ class IndexContainer extends Component {
                     <option value={options[4]}>{options[4]}</option>
                 </select>
                 </div> 
-                <IndexList listings={this.getSelectListings()} handleSave={this.props.handleSave}/>
+                <IndexList container={"index container"} listings={this.getSelectListings()} handleSave={this.props.handleSave}/>
               </Grid>
               <Grid container direction="row" justify="center" alignItems="center">
                 <Button variant="contained" color="primary" onClick={() => this.showLessListings()}> {`<<`} </Button> &nbsp;
@@ -83,7 +84,6 @@ class IndexContainer extends Component {
           </div>
         );
     }
-
 }
 
 export default IndexContainer;

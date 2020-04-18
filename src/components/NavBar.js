@@ -3,10 +3,27 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar'
 import {Button} from '@material-ui/core/'
 import {Link} from 'react-router-dom'
+import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
 import 'typeface-roboto';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+  },
+}));
 
 const NavBar = (props) => {
   console.log(props)
+  const classes = useStyles();
 
 function handleLogout() {
   props.onLogout();
@@ -15,8 +32,10 @@ function handleLogout() {
 const loggedinBtns = ()=> {
   return (
     <div>
-    <Button color="inherit" component={Link} to="/account">Account</Button>
+    <Button color="inherit" component={Link} to="/save">Saved</Button>
+    <Button color="inherit" component={Link} to="/tracker">Tracker</Button>    
     <Button color="inherit" component={Link} to="/dashboard">Dashboard</Button>
+    <Button color="inherit" component={Link} to="/account">Account</Button>
     <Button color="inherit" onClick={handleLogout} component={Link} to="/logout">Logout</Button>
     </div>
   )
@@ -33,10 +52,15 @@ const loggedoutBtns = () => {
 }
 
   return(
-        <div>
+        <div className={classes.root}>
           <AppBar position="fixed" color="primary">
-            <Toolbar>
-              <Button size="large" color="inherit" component={Link} to="/">Client-RM</Button>
+            <Toolbar variant="dense">
+              <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+                <MenuIcon />
+              </IconButton>
+              <Typography variant="h6" className={classes.title}>
+                <Button size="large" color="inherit" component={Link} to="/">Client-RM</Button>
+              </Typography>
               <Button color="inherit" component={Link} to="/about">About</Button>
               <Button color="inherit" component={Link} to="/index">Listings</Button>
               { props.loggedIn ? loggedinBtns() : loggedoutBtns() }
