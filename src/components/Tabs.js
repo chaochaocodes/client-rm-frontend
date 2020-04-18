@@ -6,7 +6,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import { tracker } from "./Tracker";
+import { tracker } from "./TrackerList";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -77,16 +77,16 @@ export default function ScrollableTabsButtonAuto() {
         <tracker.team />
       </TabPanel>
       <TabPanel value={value} index={1}>
-      <tracker.contract />
+        <tracker.contract />
       </TabPanel>
       <TabPanel value={value} index={2}>
-      <tracker.mortgage />
+        <tracker.mortgage />
       </TabPanel>
       <TabPanel value={value} index={3}>
-      <tracker.inspection />
+        <tracker.inspections />
       </TabPanel>
       <TabPanel value={value} index={4}>
-      <tracker.closing />
+        <tracker.closing />
       </TabPanel>
     </div>
   );

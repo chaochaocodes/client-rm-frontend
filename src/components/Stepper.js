@@ -30,15 +30,15 @@ function getSteps() {
 function getStepContent(step) {
   switch (step) {
     case 0:
-      return 'Step 1: Select campaign settings...';
+      return 'Step 1: Find the professionals that will help you along this journey!';
     case 1:
-      return 'Step 2: What is an ad group anyways?';
+      return 'Step 2: Read the fine print.';
     case 2:
-      return 'Step 3: This is the bit I really care about!';
+      return 'Step 3: All the nitty gritty to fund you dream home.';
     case 3:
-        return 'Step 4: This is the bit I really care about!';
+        return 'Step 4: Make sure all your bases are covered!';
     case 4:
-        return 'Step 5: This is the bit I really care about!';
+        return 'Step 5: Get ready for the big day... ';
     default:
       return 'Unknown step';
   }
@@ -111,7 +111,7 @@ export default function HorizontalStepper() {
         {allStepsCompleted() ? (
           <div>
             <Typography className={classes.instructions}>
-              All steps completed - you&apos;re finished
+              CONGRATULATIONS!!  Welcome to the Homeowner's Club!
             </Typography>
             <Button onClick={handleReset}>Reset</Button>
           </div>
