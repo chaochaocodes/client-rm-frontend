@@ -20,7 +20,7 @@ const IndexList = props => {
     return props.listings.map(result => {
       return(
         <Grid key={result.id} item>
-            <IndexCard key={result.id} result={result} handleSave={props.handleSave}/>
+            <IndexCard container={props.container} key={result.id} result={result} handleSave={props.handleSave}/>
         </Grid>
       )
     })}
