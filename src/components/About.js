@@ -48,7 +48,8 @@ const Privacy = () => {
                         <p>
                         <li>Users can Search Listings by City</li>
                         <li>Users can Save Listings to their Account</li>
-                        <li>Users can Track their Home Ownership Process</li>
+                        <li>Users can Learn about the Home Ownership Process</li>
+                        <li>Users can Track their Home Ownership Progress</li>
                         </p><br></br>
                         <Typography variant="h5">Q & A</Typography><hr></hr>
                         <p>
