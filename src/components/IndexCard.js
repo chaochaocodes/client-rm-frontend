@@ -93,10 +93,10 @@ const IndexCard = props => {
             <p>Location: {result.city_state}</p>
             <Button variant="outlined" size="small" className={classes.margin} onClick={newTab}>Link</Button>
             
-            { props.container == "index container" ? 
-            <Button variant="outlined" size="small" className={classes.margin} onClick={ () => props.handleSave({result})}>Save Listing</Button>
-             :
+            { props.container == "save container" ? 
             <Button variant="outlined" size="small" className={classes.margin}> Delete </Button> 
+            :
+            <Button variant="outlined" size="small" className={classes.margin} onClick={ () => props.handleSave({result})}>Save Listing</Button>
             }
 
             </p>
