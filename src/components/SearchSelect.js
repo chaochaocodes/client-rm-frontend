@@ -69,11 +69,12 @@ const SearchSelect = (props) => {
   return (
     <div>
      <h3>Enter City, State to Start Exploring!</h3>
-      {/* <form onSubmit={ e => props.handleSubmit(e) }>
+     
+      <form onSubmit={ e => props.handleSubmit(e) }>
         <input name="city" label="city" placeholder="Enter City"/>
         <input name="state" label="state" placeholder="Enter State"/>
         <button type="submit"> Search </button>
-      </form> */}
+      </form>
 
       <form onSubmit={ e => props.handleSubmit(e)} noValidate autoComplete="off">
       <FormControl className={classes.margin}  >
