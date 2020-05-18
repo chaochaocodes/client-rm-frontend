@@ -1,6 +1,7 @@
 import React from 'react';
 import Contacts from './AddressForm';
 import CheckList from './CheckList';
+import Expansion from './Expansion';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
@@ -33,6 +34,7 @@ function Dashboard () {
 
     return(
         <>
+        <Expansion/>
         <Paper className={classes.paper}>
           <Typography component="h1" variant="h4" align="center">
             Contact Information
