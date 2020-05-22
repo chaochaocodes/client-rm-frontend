@@ -37,7 +37,7 @@ class Signup extends Component {
     render() {
         return ( 
             <Grid container justify="center" >
-                <div>
+                <div id="auth-box">
                 <h3>Create an Account</h3>
                 <form onSubmit={this.handleSubmit} noValidate autoComplete="off">
                     <TextField id="standard-basic" label="Username" name="username"
