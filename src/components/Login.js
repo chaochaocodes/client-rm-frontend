@@ -39,8 +39,8 @@ class Login extends Component {
             <Redirect to="/dashboard"/>
             ) : ( 
                 
-            <Grid container justify="center" >
-                <div>
+            <Grid container justify="center">
+                <div id="auth-box">
                 <h3>Login</h3>
                 <form onSubmit={this.handleSubmit} noValidate autoComplete="on">
                     {/* <Message error header={this.props.failedLogin? this.props.error : null}/> */}
