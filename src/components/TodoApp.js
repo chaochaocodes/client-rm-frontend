@@ -1,4 +1,6 @@
 import React from 'react';
+import '../css/todo.css'
+
 /*
 Todo app structure
 
@@ -120,7 +122,7 @@ class TodoApp extends React.Component {
   }
   render() {
     return (
-      <div id="main">
+      <div id="todo-app">
         <TodoHeader />
         <TodoList items={this.props.initItems} removeItem={this.removeItem} markTodoDone={this.markTodoDone}/>
         <TodoForm addItem={this.addItem} />
