@@ -1,6 +1,7 @@
 import React from 'react';
-import Contacts from './AddressForm';
+import Contacts from './ContactForm';
 import CheckList from './CheckList';
+import TodoApp from './TodoApp';
 import Expansion from './Expansion';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -29,6 +30,11 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
+var todoItems = [];
+todoItems.push({index: 1, value: "learn react", done: false});
+todoItems.push({index: 2, value: "Go shopping", done: true});
+todoItems.push({index: 3, value: "buy flowers", done: true});
+
 function Dashboard () {
     const classes = useStyles();
 
@@ -46,6 +52,7 @@ function Dashboard () {
             Check List
           </Typography>
         <CheckList/>
+        <TodoApp initItems={todoItems}/>
         </Paper>
         </>
     )
