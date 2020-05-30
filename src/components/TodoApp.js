@@ -87,11 +87,11 @@ class TodoForm extends React.Component {
   }
 }
   
-class TodoHeader extends React.Component {
-  render () {
-    return <h1>Todo list</h1>;
-  }
-}
+// class TodoHeader extends React.Component {
+//   render () {
+//     return <h1>Todo list</h1>;
+//   }
+// }
   
 class TodoApp extends React.Component {
   constructor (props) {
@@ -123,7 +123,7 @@ class TodoApp extends React.Component {
   render() {
     return (
       <div id="todo-app">
-        <TodoHeader />
+        {/* <TodoHeader /> */}
         <TodoList items={this.props.initItems} removeItem={this.removeItem} markTodoDone={this.markTodoDone}/>
         <TodoForm addItem={this.addItem} />
       </div>
