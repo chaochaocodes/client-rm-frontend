@@ -43,7 +43,7 @@ function Dashboard () {
         <Expansion/>
         <Paper className={classes.paper}>
           <Typography component="h1" variant="h4" align="center">
-            Contact Information
+            New Contact
           </Typography>
         <Contacts/>
         </Paper>
@@ -52,7 +52,12 @@ function Dashboard () {
             Check List
           </Typography>
         <CheckList/>
-        <TodoApp initItems={todoItems}/>
+        </Paper>
+        <Paper className={classes.paper}>
+          <Typography component="h1" variant="h4" align="center">
+            To Do List
+          </Typography>
+          <TodoApp initItems={todoItems}/>
         </Paper>
         </>
     )
