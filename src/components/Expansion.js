@@ -20,8 +20,15 @@ const useStyles = makeStyles((theme) => ({
   },
   secondaryHeading: {
     fontSize: theme.typography.pxToRem(15),
+    flexBasis: '33.33%',
     color: theme.palette.text.secondary,
   },
+  tertiaryHeading: {
+    fontSize: theme.typography.pxToRem(15),
+    flexBasis: '33.33%',
+    color: theme.palette.text.secondary,
+  }
+
 }));
 
 export default function ControlledExpansionPanels() {
@@ -40,8 +47,9 @@ export default function ControlledExpansionPanels() {
           aria-controls="panel1bh-content"
           id="panel1bh-header"
         >
-          <Typography className={classes.heading}>General settings</Typography>
-          <Typography className={classes.secondaryHeading}>I am an expansion panel</Typography>
+          <Typography className={classes.heading}>Realtor</Typography>
+          <Typography className={classes.secondaryHeading}>Email</Typography>
+          <Typography className={classes.tertiaryHeading}>Phone Number</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Typography>
@@ -56,10 +64,10 @@ export default function ControlledExpansionPanels() {
           aria-controls="panel2bh-content"
           id="panel2bh-header"
         >
-          <Typography className={classes.heading}>Users</Typography>
-          <Typography className={classes.secondaryHeading}>
-            You are currently not an owner
-          </Typography>
+          <Typography className={classes.heading}>Lender</Typography>
+          <Typography className={classes.secondaryHeading}>Email</Typography>
+          <Typography className={classes.tertiaryHeading}>Phone Number</Typography>
+
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Typography>
@@ -74,10 +82,11 @@ export default function ControlledExpansionPanels() {
           aria-controls="panel3bh-content"
           id="panel3bh-header"
         >
-          <Typography className={classes.heading}>Advanced settings</Typography>
-          <Typography className={classes.secondaryHeading}>
-            Filtering has been entirely disabled for whole web server
+          <Typography className={classes.heading}>Attorney's Name</Typography>
+          <Typography className={classes.secondaryHeading}>Email
           </Typography>
+          <Typography className={classes.tertiaryHeading}>Phone Number</Typography>
+
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Typography>
@@ -92,7 +101,9 @@ export default function ControlledExpansionPanels() {
           aria-controls="panel4bh-content"
           id="panel4bh-header"
         >
-          <Typography className={classes.heading}>Personal data</Typography>
+          <Typography className={classes.heading}>Home Inspector</Typography>
+          <Typography className={classes.secondaryHeading}>Email</Typography>
+          <Typography className={classes.tertiaryHeading}>Phone Number</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Typography>
