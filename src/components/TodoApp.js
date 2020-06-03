@@ -124,8 +124,8 @@ class TodoApp extends React.Component {
     return (
       <div id="todo-app">
         {/* <TodoHeader /> */}
-        <TodoList items={this.props.initItems} removeItem={this.removeItem} markTodoDone={this.markTodoDone}/>
         <TodoForm addItem={this.addItem} />
+        <TodoList items={this.props.initItems} removeItem={this.removeItem} markTodoDone={this.markTodoDone}/>
       </div>
     );
   }
