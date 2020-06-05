@@ -71,7 +71,10 @@ class SearchContainer extends Component {
                   <option value={options[4]}>{options[4]}</option>
               </select>
               </div> 
-              <IndexList listings={this.getSelectListings()} handleSave={this.props.handleSave}/>
+              <IndexList 
+                container={"search container"}
+                listings={this.getSelectListings()} 
+                handleSave={this.props.handleSave}/>
             </Grid>
             <Grid container direction="row" justify="center" alignItems="center">
               <Button variant="contained" color="primary" onClick={() => this.showLessListings()}> {`<<`} </Button> &nbsp;
