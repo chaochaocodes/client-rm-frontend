@@ -1,6 +1,7 @@
 import React, {Fragment} from 'react'
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
+import { borders } from '@material-ui/system';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
@@ -12,10 +13,11 @@ const useStyles = makeStyles(theme => ({
     overflow: 'hidden',
     },
   paper: {
-    maxWidth: 800,
+    maxWidth: 1000,
     overflow: 'hidden',
     margin: `${theme.spacing(1)}px auto`,
     padding: theme.spacing(4), 
+    borderRadius: "10px",
     // backgroundColor: '#000000',
     // color: '#FFFFFF',
     opacity: 0.7,
@@ -37,7 +39,7 @@ const Privacy = () => {
     return(
         <Fragment>
             <div className={classes.root}>
-                <Paper className={classes.paper}>
+                <Paper className={classes.paper} >
                   <Grid container wrap="nowrap" spacing={2}>
                     <Grid item xs>
                         <Typography variant="h5" line-height="1.6">About Client-RM</Typography><hr></hr>
