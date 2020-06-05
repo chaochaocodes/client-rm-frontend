@@ -5,6 +5,7 @@ import IndexContainer from './containers/IndexContainer';
 import SearchContainer from './containers/SearchContainer';
 import SaveContainer from './containers/SaveContainer';
 import NavBar from './components/NavBar'
+import Navigation from './components/Navigation'
 import SignUp from './components/SignUp';
 import Login from './components/Login';
 import Logout from './components/Logout';
@@ -90,6 +91,11 @@ class App extends Component {
     api.listings.saveListing({listing: result, user_id: this.state.auth.user.id})
   };
 
+  handleDelete = (result) => {
+    console.log("delete fires")
+    api.listings.deleteListing({listing: result, user_id: this.state.auth.user.id})
+  }
+
   render() {
     console.log("App Component rendered")
     console.log(this.state.auth.user)
@@ -97,15 +103,17 @@ class App extends Component {
         <div className="App">
           <ThemeProvider theme={theme} >
           <Router>
-          <NavBar 
-            loggedIn={this.state.loggedIn}
-            currentUser={this.state.auth.user} 
-            onLogout={this.logout}/>
+          <div class="nav-container">
+            <NavBar class="navbar"
+              loggedIn={this.state.loggedIn}
+              currentUser={this.state.auth.user} 
+              onLogout={this.logout}/></div>
+            <Navigation class="navigation"/>
             <Switch>
                 <Route exact path="/"><Home/></Route>
                 <Route path="/index" render={props => <IndexContainer {...props} handleSave={this.handleSave}/>}></Route>
-                <Route path="/save" ><SaveContainer currentUser={this.state.auth.user} /></Route>
                 <Route path="/search" render={props => <SearchContainer {...props} handleSave={this.handleSave}/>}></Route>
+                <Route path="/save" render={props => <SaveContainer {...props} handleDelete={this.handleDelete} currentUser={this.state.auth.user} />}></Route>
                 <Route path="/signup" render={props => <SignUp {...props} onSignup={this.signup}/>}></Route>  
                 <Route path="/login" render={props => <Login {...props} onLogin={this.login}/>}></Route>  
                 <Route path="/logout" ><Logout/></Route>  
