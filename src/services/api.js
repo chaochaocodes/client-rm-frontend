@@ -34,6 +34,14 @@ const getSavedListings = (data) => {
   })
 }
 
+const deleteListing = (data) => {
+  console.log(data, '----api.js DELETE listing')
+  return fetch(`${ROOT}/users_listings/delete`, {
+    method: "POST",
+    headers: headers(),
+  })
+}
+
 const searchListings = (data) => {
   console.log(data, "api.js searchListings")
   return fetch(`${ROOT}/listings/search`, { 
@@ -88,6 +96,7 @@ export const api = {
     // getListings,
     searchListings,
     saveListing,
-    getSavedListings
+    getSavedListings,
+    deleteListing
   } 
 };
