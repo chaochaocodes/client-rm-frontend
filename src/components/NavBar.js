@@ -54,7 +54,7 @@ const loggedoutBtns = () => {
   return(
         <div className={classes.root}>
           <AppBar position="fixed" color="primary">
-            <Toolbar variant="dense">
+            <Toolbar variant="regular">
               <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
                 <MenuIcon />
               </IconButton>
