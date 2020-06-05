@@ -73,7 +73,10 @@ class SaveContainer extends Component {
                     <option value={options[4]}>{options[4]}</option>
                 </select>
                 </div> 
-                <IndexList container={"save container"} listings={this.getSelectListings()}/>
+                <IndexList 
+                  container={"save container"} 
+                  listings={this.getSelectListings()}
+                  handleDelete={this.props.handleDelete}/>
               </Grid>
               <Grid container direction="row" justify="center" alignItems="center">
                 <Button variant="contained" color="primary" onClick={() => this.showLessListings()}> {`<<`} </Button> &nbsp;
