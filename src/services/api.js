@@ -39,6 +39,7 @@ const deleteListing = (data) => {
   return fetch(`${ROOT}/users_listings/delete`, {
     method: "POST",
     headers: headers(),
+    body: JSON.stringify({listing: data.listing, user_id: data.user_id})
   })
 }
 
