@@ -23,10 +23,10 @@ const Navigation = () => {
 
   return(
         <div className={classes.root}>
-          <AppBar position="fixed" color="primary">
+          <AppBar position="relative" color="primary">
             <Toolbar variant="regular">
-              <Button color="inherit" component={Link} to="/about">About</Button>
               <Button color="inherit" component={Link} to="/index">Listings</Button>
+              <Button color="inherit" component={Link} to="/search">Search</Button>
               <Button color="inherit" component={Link} to="/save">Saved</Button>
               <Button color="inherit" component={Link} to="/tracker">Tracker</Button>    
               <Button color="inherit" component={Link} to="/dashboard">Dashboard</Button>
