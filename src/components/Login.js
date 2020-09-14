@@ -39,7 +39,7 @@ class Login extends Component {
             <Redirect to="/dashboard"/>
             ) : ( 
                 
-            <Grid container justify="center">
+            <Grid container justify="center" border="none">
                 <div id="auth-box">
                 <h3>Login</h3>
                 <form onSubmit={this.handleSubmit} noValidate autoComplete="on">
@@ -49,7 +49,7 @@ class Login extends Component {
                     <TextField id="login-password" label="Password" name="password" type="password"
                         onChange={this.handleChange} value={this.state.password}/><p></p>
                     <Button variant="outlined" type="submit">Login</Button><p></p>
-                    <Button variant="outlined" component={Link} to="/signup">New User?</Button>
+                    <Button varient="none" component={Link} to="/signup">New User?</Button>
                 </form>  
                 </div>
             </Grid> 

@@ -13,11 +13,13 @@ class AccountContainer extends Component {
         return(
             <Grid container justify="center" >                
                 <div justify="center">
+                    <div className="account-details">
                     <h3>Account Details</h3><br/>
                     <p> Hello {this.props.currentUser.username}!</p>
                     <br/>
                     <Button variant="outlined" onClick={this.props.onDelete} component={Link} to="/delete">Delete Account</Button>
                     <p>Note: This cannot be undone!</p>
+                    </div>
                 </div> 
             </Grid>
         )

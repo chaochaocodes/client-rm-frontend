@@ -13,14 +13,14 @@ const useStyles = makeStyles(theme => ({
     overflow: 'hidden',
     },
   paper: {
-    maxWidth: 1000,
+    // maxWidth: 1000,
     overflow: 'hidden',
     margin: `${theme.spacing(1)}px auto`,
     padding: theme.spacing(4), 
-    borderRadius: "10px",
+    borderRadius: "7px",
     // backgroundColor: '#000000',
     // color: '#FFFFFF',
-    opacity: 0.7,
+    opacity: .99,
   },
   image: {
     width: 75,

@@ -92,7 +92,7 @@ class App extends Component {
   };
 
   handleDelete = (result) => {
-    console.log("delete fires")
+    console.log("delete fires", result)
     api.listings.deleteListing({listing: result, user_id: this.state.auth.user.id})
   }
 
@@ -103,12 +103,19 @@ class App extends Component {
         <div className="App">
           <ThemeProvider theme={theme} >
           <Router>
-          <div class="nav-container">
-            <NavBar class="navbar"
-              loggedIn={this.state.loggedIn}
-              currentUser={this.state.auth.user} 
-              onLogout={this.logout}/></div>
-            <Navigation class="navigation"/>
+
+          <header className="app-header">
+            <div class="nav-container">
+              <NavBar class="navbar"
+                loggedIn={this.state.loggedIn}
+                currentUser={this.state.auth.user} 
+                onLogout={this.logout}/>
+              <Navigation class="navigation"/>
+            </div>
+          </header>
+            
+          <main id="main" className="app-main" tabindex="-1">
+
             <Switch>
                 <Route exact path="/"><Home/></Route>
                 <Route path="/index" render={props => <IndexContainer {...props} handleSave={this.handleSave}/>}></Route>
@@ -123,6 +130,8 @@ class App extends Component {
                 <Route path="/delete"><Delete/></Route>
                 <Route path='/about'><About/></Route>
             </Switch>
+
+          </main>
           </Router>
           </ThemeProvider>
         </div>

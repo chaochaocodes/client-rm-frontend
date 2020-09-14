@@ -53,7 +53,7 @@ const loggedoutBtns = () => {
 
   return(
         <div className={classes.root}>
-          <AppBar position="absolute" color="primary">
+          <AppBar position="relative" color="primary">
             <Toolbar variant="regular">
               {/* <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
                 <MenuIcon />
